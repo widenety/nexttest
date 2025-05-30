@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import './_Css/layout/layout.scss';
 import './_Css/common.scss';
+import './_Css/layout/layout.scss';
+import './_Css/styleGuide.scss';
+import './_Css/contents.scss';
 //import CustomHead from './_Layout/CustomHead';
 //import type { Metadata } from 'next';
 //import { Geist, Geist_Mono } from 'next/font/google';

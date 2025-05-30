@@ -1,0 +1,19 @@
+@charset "utf-8";
+@import "variables";
+
+.join {
+	margin:50px auto;max-width:500px;width:100%;
+	.frmTitLv1 {}
+	.frmListLv1 {
+		margin:0 0 20px;
+		input {width:100%;}
+		.hasEmail {
+			display:flex;flex-flow:row;flex-wrap:wrap;
+			input {width:auto;flex:1;}
+			button {height:40px;margin:0 0 0 10px;}
+		}
+		.hasPassword {}
+	}
+	.frmListLv2 {}
+	.joinBtn {width:100%;}
+}

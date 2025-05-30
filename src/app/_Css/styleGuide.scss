@@ -1,0 +1,106 @@
+@charset "utf-8";
+@import "variables";
+
+/* ==============================
+* Button
+================================= */
+.cBtn {
+	display:flex;flex-flow:row;flex-wrap:wrap;align-items:center;align-content:center;justify-content:center;border:0;border-radius:5px;height:50px;padding:0 20px;box-sizing:border-box;font-size:17px;line-height:1.2;color:#fff;text-decoration:none;cursor:pointer;min-width:100px;transition:all .3s ease;
+	&.cBtn1 {
+		background:$blue1;
+		> span {color:#fff;line-height:1;}
+		&:hover,
+		&:focus {background:$blue2;}
+	}
+	&.cBtn2 {
+		background:$dark1;
+		> span {color:#fff;line-height:1;}
+		&:hover,
+		&:focus {background:$dark2;}
+	}
+}
+
+/* ==============================
+* Text
+================================= */
+/** -- Title */
+.cTit1 {display:block;font-size:1.5em;color:#000;line-height:1.2;margin:0 0 10px;font-weight:700;}
+
+/** -- Text */
+
+/* ==============================
+* Form
+================================= */
+.frm {
+	display:block;
+	.frmTitLv1 {}
+	.frmListLv1 {
+		display:block;
+		> li {
+			margin:0 0 15px;
+			&:last-child {margin:0;}
+		}
+	}
+	.frmListLv2 {
+		display:flex;flex-flow:row;flex-wrap:wrap;
+		> li {
+			margin:0 20px 0 0;
+			&:last-child {margin:0;}
+		}
+	}
+	.frmItemLv1 {
+		display:flex;flex-flow:row;flex-wrap:wrap;align-items:center;align-content:center;
+		dt,
+		dd {line-height:1;min-height:31px;align-items:center;align-content:center;}
+		dt {
+			width:100px;
+			> * {line-height:1;}
+		}
+		dd {flex:1;}
+	}
+}
+
+/* ==============================
+* Input & Textarea
+================================= */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+textarea {box-sizing:border-box;padding:5px 10px;border-radius:5px;font-size:17px;}
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {height:40px;line-height:1;}
+
+textarea {height:100px;resize:none;}
+
+/* ==============================
+* Radio & Checkbox
+================================= */
+.rdos {position:relative;line-height:1}
+.rdos input[type="radio"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.rdos input[type="radio"] + label {display:inline-block;vertical-align:middle;position:relative;padding:5px 0 5px 25px;cursor:pointer;user-select:none;line-height:1.2;margin-right:5px;text-align:left;transition:all .3s ease}
+.rdos input[type="radio"] + label:before,
+.rdos input[type="radio"] + label:after {content:'';position:absolute;box-sizing:border-box;border-radius:50%;transition:all .3s ease}
+.rdos input[type="radio"] + label:before {left:0;top:5px;margin:0;width:21px;height:21px;background:#fff;border:1px solid #ccc}
+.rdos input[type="radio"] + label:after {width:9px;height:9px;left:6px;top:11px;background:#fff;border-radius:50%;opacity:0}
+.rdos input[type="radio"] + label:focus,
+.rdos input[type="radio"] + label:hover {color:$blue1;}
+.rdos input[type="radio"] + label:focus:before,
+.rdos input[type="radio"] + label:hover:before {border-color:$blue1;}
+.rdos input[type="radio"]:checked + label:before {border-color:$blue2;background:$blue2;}
+.rdos input[type="radio"]:checked + label:after {opacity:1}
+.chks {position:relative;line-height:1}
+.chks input[type="checkbox"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.chks input[type="checkbox"] + label {display:inline-block;vertical-align:middle;position:relative;padding:5px 0 5px 25px;cursor:pointer;user-select:none;line-height:1.2;margin-right:5px;text-align:left;transition:all .3s ease}
+.chks input[type="checkbox"] + label:before,
+.chks input[type="checkbox"] + label:after {content:'';display:block;position:absolute;box-sizing:border-box;transition:all .3s ease}
+.chks input[type="checkbox"] + label:before {width:21px;height:21px;left:0;top:6px;margin:0;background:#fff;border:1px solid #ccc}
+.chks input[type="checkbox"] + label:after {width:9px;height:6px;left:6px;top:12px;border:solid;border-width:0 0 2px 2px;border-color:transparent transparent #fff #fff;transform:rotate(-45deg);opacity:0}
+.chks input[type="checkbox"] + label:focus,
+.chks input[type="checkbox"] + label:hover {color:#0061ba}
+.chks input[type="checkbox"] + label:focus:before,
+.chks input[type="checkbox"] + label:hover:before {border-color:#0061ba}
+.chks input[type="checkbox"]:checked + label:before {border-color:#01346b;background:#01346b}
+.chks input[type="checkbox"]:checked + label:after {opacity:1}
