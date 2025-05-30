@@ -1,0 +1,44 @@
+/* ==============================
+* Layout
+================================= */
+html {
+	body {
+		background:#ddd;padding:0;margin:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+		#wrap {
+			max-width:1200px;margin:0 auto;display:flex;flex-flow:column;flex-wrap:wrap;padding:20px 0;box-sizing:border-box;min-height:100vh;
+		}
+	}
+}
+
+/* ==============================
+* Header
+================================= */
+#Header {
+	background:#fff;box-sizing:border-box;padding:20px;display:flex;flex-flow:row;flex-wrap:wrap;align-items:center;align-content:center;justify-content:space-between;
+	.logo {}
+	.navi {
+		ul {
+			display:flex;flex-flow:row;flex-wrap:wrap;
+			li {
+				margin:0 20px 0 0;
+				&:last-child {margin:0;}
+			}
+		}
+	}
+}
+
+/* ==============================
+* Contents
+================================= */
+#Contents {
+	flex:1;font-size:17px;line-height:1.6;color:#555;background:#fff;margin:20px 0;
+}
+
+/* ==============================
+* Footer
+================================= */
+#Footer {
+	background:#fff;box-sizing:border-box;padding:20px;display:flex;flex-flow:row;flex-wrap:wrap;align-items:center;align-content:center;justify-content:space-between;
+	.logo {font-weight:700;}
+	.copy {}
+}

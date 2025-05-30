@@ -1,0 +1,109 @@
+@charset "utf-8";
+
+
+* {margin:0;padding:0}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {border:0;font-size:100%}
+
+/* 프린트시 배경이미지 출력 */
+* {-webkit-print-color-adjust:exact}
+
+/* html5 호환 설정*/
+article, aside, canvas, details, figcaption, figure, main, footer, header, hgroup, menu, nav, section, summary {display:block}
+address {font-style:normal;display:inline}
+table {width:100%;border-collapse:collapse;border-spacing:0}
+table, caption, tbody, tfoot, thead, tr, th, td {outline:0;background:transparent;font-size:100%}
+nav, ul, ol {list-style:none}
+blockquote, q {quotes:none}
+blockquote:before, blockquote:after, q:before, q:after {content:"";content:none}
+hr {display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}
+
+/* 글자 속성 */
+/* a:link, a:visited, a:hover, a:active순서로 작성 */
+a, a:link {color:#555;text-decoration:none}
+a:visited, a.visited, a.visited:visited {color:inherit;text-decoration:none}
+a:hover, a.visited:hover, a:active {color:inherit;text-decoration:none}
+a:focus {text-decoration:none}
+
+/* LIST 요소 기본 */
+ol.onum li {list-style-type:decimal}
+.onum {padding-left:22px}
+
+/* Form 요소들 기본 */
+/* input, button, select, textarea {font-family:inherit} */
+fieldset {padding:0px;margin:0px;border:0px}
+legend {display:none}
+
+input {border:1px solid #ccc;}
+input[type="radio"],input[type="checkbox"] {border:none;padding:0;margin:0;vertical-align:middle}
+input[type="file"] {border:0;padding:0;margin:0;height:auto}
+input.text,input.password {border-left:1px solid #cbcbcb;border-top:1px solid #cbcbcb;border-right:1px solid #e4e4e4;border-bottom:1px solid #e4e4e4;background:#f8f8f8;height:28px;line-height:28px;padding:0 5px}
+input.file {border:1px solid #ddd;height:16px;padding:2px;font-size:100%;line-height:110%}
+input.image,input.radio,input.checkbox {border:0px !important;vertical-align:middle;padding:0px;margin:0px}
+input.num {text-align:right;border:1px solid #ddd;height:16px;padding:2px;font-size:100%;line-height:110%}
+input.readonly {background-color:#f7f7f7}
+textarea {border:1px solid #ddd;padding:2px 5px}
+select.select {border:1px solid #ccc;height:45px;vertical-align:top;line-height:1;min-width:45px;padding:0 50px 0 20px}
+
+/* 이미지 요소 기본 */
+img {vertical-align:top}
+
+/* ime-mode */
+.imeOff {ime-mode:disabled}
+.imehangul {ime-mode:active}
+
+/* 오버-클릭 커서로 지정 */
+button, .pointer, .hand{cursor:pointer}
+.mvPointer {cursor:move}
+
+/*숨김*/
+.hidden {display:none}
+.blind {width:1px;height:1px;overflow:hidden;position:absolute;top:-9999em;left:-9999em;display:block;text-indent:-9999em;font-size:0px;line-height:0}
+
+/* 공백 */
+/* 관리자에서 사용 */
+.gap10 {height:10px;clear:both;overflow:hidden;display:block}
+.gap20 {height:20px;clear:both;overflow:hidden;display:block}
+.gap30 {height:30px;clear:both;overflow:hidden;display:block}
+/* 컨텐츠에서 사용 */
+.gap {height:60px;clear:both;display:block}
+.sgap {height:40px;clear:both;display:block}
+.ssgap {height:30px;clear:both;display:block}
+@media all and (max-width:600px){
+	.gap {height:40px;clear:both;display:block}
+	.sgap {height:25px;clear:both;display:block}
+	.ssgap {height:15px;clear:both;display:block}
+	.sssgap {height:10px;clear:both;display:block}
+}
+
+
+.cBtnBox1 {display:block;width:100%;text-align:center;margin:30px 0 0}
+.cBtnBox1.top {margin:0 0 30px;}
+.cBtnBox1.bottom {}
+.cBtnBox1 > * {margin:0 3px}
+.cBtnBox1:after {content:"";display:block;clear:both}
+@media all and (max-width:699px) {
+	.cBtnBox1 {margin:20px 0 0}
+	.cBtnBox1 > * {margin:0}
+	.cBtnBox1.has3 > * {display:block;float:left;box-sizing:border-box;min-width:0 !important;max-width:none !important}
+	.cBtnBox1.has3 > *:nth-child(1) {width:49%;margin-right:2%}
+	.cBtnBox1.has3 > *:nth-child(2) {width:49%}
+	.cBtnBox1.has3 > *:nth-child(3) {width:100%;margin:5px 0 0}
+}
+@media all and (max-width:599px) {
+	.cBtnBox1.has1 > *,
+	.cBtnBox1.has2 > * {display:block;float:left;box-sizing:border-box;min-width:0 !important;max-width:none !important}
+	.cBtnBox1.has1 > * {width:100%}
+	.cBtnBox1.has2 > * {width:49%;margin-right:2%}
+	.cBtnBox1.has2 > *:last-child {margin-right:0}
+	#popup-wrap .cBtnBox1.top {margin:0 0 20px;padding:0 0 20px}
+	#popup-wrap .cBtnBox1.bottom {margin:20px 0 0;padding:20px 0 0}
+}
+
+@keyframes buzz {
+	10%, 30% {transform: translateX(3px) rotate(2deg);}
+	20%, 40% {transform: translateX(-3px) rotate(-2deg);}
+	50%, 70% {transform: translateX(2px) rotate(1deg);}
+	60%, 80% {transform: translateX(-2px) rotate(-1deg);}
+	90% {transform: translateX(1px) rotate(0);}
+	100% {transform: translateX(-1px) rotate(0);}
+}
