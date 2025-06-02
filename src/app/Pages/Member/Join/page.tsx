@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { db } from "@/lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { doc, getDoc } from "firebase/firestore";
-*/
+// */
 export default function Join() {
 	/* ==============================
 	* .env.local 테스트
@@ -34,7 +34,7 @@ export default function Join() {
 	useEffect( () => {
 		getMbMail();
 	}, [] );
-	*/
+	// */
 
 	/* ==============================
 	* 회원유형 선택용 state
