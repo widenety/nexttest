@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { db } from "@/lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { doc, getDoc } from "firebase/firestore";
-// */
+*/
 export default function Join() {
 	/* ==============================
 	* .env.local 테스트
@@ -34,7 +34,7 @@ export default function Join() {
 	useEffect( () => {
 		getMbMail();
 	}, [] );
-	// */
+	*/
 
 	/* ==============================
 	* 회원유형 선택용 state
@@ -67,11 +67,13 @@ export default function Join() {
 			alert( "이메일을 입력해주세요." );
 			setEmail( "" );
 			emailRef.current?.focus();
+			setEmailCheck( false );
 			return;
 		} else if ( !email || !emailRegex.test( email ) ) {
 			alert( "올바른 이메일 형식을 입력해주세요." );
 			setEmail( "" );
 			emailRef.current?.focus();
+			setEmailCheck( false );
 			return;
 		} else {
 			alert( "올바른 이메일 형식입니다." );
@@ -120,6 +122,13 @@ export default function Join() {
 							<dd className="hasEmail">
 								<input type="email" name="email" id="email" placeholder="이메일을 입력하세요." ref={emailRef} onChange={( e ) => setEmail( e.target.value )} value={email} autoComplete="off" />
 								<button type="button" className="cBtn cBtn2 mailCheck" onClick={getIsDupl}><span>중복확인</span></button>
+								{
+									emailCheck ? (
+										<span className="emailCheck">사용 가능한 이메일입니다.</span>
+									) : (
+										<span className="emailCheck">이메일을 입력하고 중복확인을 해주세요.</span>
+									)
+								}
 							</dd>
 						</dl>
 					</li>
