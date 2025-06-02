@@ -72,7 +72,8 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="tel"] {height:40px;line-height:1;}
-
+input[type="password"] {font-family:monospace;}
+input[type="password"]::placeholder {font-family:"Noto Sans KR", sans-serif;}
 textarea {height:100px;resize:none;}
 
 /* ==============================
@@ -80,7 +81,7 @@ textarea {height:100px;resize:none;}
 ================================= */
 .rdos {position:relative;line-height:1}
 .rdos input[type="radio"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
-.rdos input[type="radio"] + label {display:inline-block;vertical-align:middle;position:relative;padding:5px 0 5px 25px;cursor:pointer;user-select:none;line-height:1.2;margin-right:5px;text-align:left;transition:all .3s ease}
+.rdos input[type="radio"] + label {display:inline-block;vertical-align:middle;position:relative;padding:5px 0 5px 25px;cursor:pointer;user-select:none;line-height:1.2;margin-right:5px;text-align:left;border-radius:3px;transition:all .3s ease}
 .rdos input[type="radio"] + label:before,
 .rdos input[type="radio"] + label:after {content:'';position:absolute;box-sizing:border-box;border-radius:50%;transition:all .3s ease}
 .rdos input[type="radio"] + label:before {left:0;top:5px;margin:0;width:21px;height:21px;background:#fff;border:1px solid #ccc}
@@ -91,9 +92,10 @@ textarea {height:100px;resize:none;}
 .rdos input[type="radio"] + label:hover:before {border-color:$blue1;}
 .rdos input[type="radio"]:checked + label:before {border-color:$blue2;background:$blue2;}
 .rdos input[type="radio"]:checked + label:after {opacity:1}
+.rdos input[type="radio"]:focus + label {outline:3px solid rgba(59, 153, 252, .5);}
 .chks {position:relative;line-height:1}
 .chks input[type="checkbox"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
-.chks input[type="checkbox"] + label {display:inline-block;vertical-align:middle;position:relative;padding:5px 0 5px 25px;cursor:pointer;user-select:none;line-height:1.2;margin-right:5px;text-align:left;transition:all .3s ease}
+.chks input[type="checkbox"] + label {display:inline-block;vertical-align:middle;position:relative;padding:5px 0 5px 25px;cursor:pointer;user-select:none;line-height:1.2;margin-right:5px;text-align:left;border-radius:3px;transition:all .3s ease}
 .chks input[type="checkbox"] + label:before,
 .chks input[type="checkbox"] + label:after {content:'';display:block;position:absolute;box-sizing:border-box;transition:all .3s ease}
 .chks input[type="checkbox"] + label:before {width:21px;height:21px;left:0;top:6px;margin:0;background:#fff;border:1px solid #ccc}
@@ -104,3 +106,4 @@ textarea {height:100px;resize:none;}
 .chks input[type="checkbox"] + label:hover:before {border-color:#0061ba}
 .chks input[type="checkbox"]:checked + label:before {border-color:#01346b;background:#01346b}
 .chks input[type="checkbox"]:checked + label:after {opacity:1}
+.chks input[type="checkbox"]:focus + label {outline:3px solid rgba(59, 153, 252, .5);}
