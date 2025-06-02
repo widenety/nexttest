@@ -1,9 +1,11 @@
 'use client';
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
+/*
+import { useEffect } from "react";
 import { db } from "@/lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { doc, getDoc } from "firebase/firestore";
-
+// */
 export default function Join() {
 	/* ==============================
 	* .env.local 테스트
