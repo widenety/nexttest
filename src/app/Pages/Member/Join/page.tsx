@@ -64,7 +64,7 @@ export default function Join() {
 	const getIsDupl = async () => {
 		setEmailCheckExec( true );
 
-		/** -- E mail 유효성 검사 */
+		/** -- E mail 유효성/공란란 검사 */
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		if ( !email ) {
 			alert( "이메일을 입력해주세요." );

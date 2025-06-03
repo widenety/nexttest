@@ -40,7 +40,7 @@ export default function RootLayout( {
 	children: React.ReactNode;
 }> ) {
 	return (
-		<html lang="ko" suppressHydrationWarning>
+		<html lang="ko">
 			<head>
 				<meta name="format-detection" content="telephone=no" />
 				<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
