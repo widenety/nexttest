@@ -13,6 +13,16 @@
 			button {height:40px;margin:0 0 0 10px;}
 		}
 		.hasPassword {}
+		.emailCheck {
+			margin:5px 0 0;
+			&.pass {color:$passColor1;}
+			&.alert {color:$alertColor1;}
+		}
+	}
+	.frmItemLv1 {
+		align-items:flex-start;align-content:flex-start;
+		dt {padding:10px 0 0;}
+		dd {}
 	}
 	.frmListLv2 {}
 	.joinBtn {width:100%;}

@@ -59,8 +59,11 @@ export default function Join() {
 	================================= */
 	const [ email, setEmail ] = useState<string>( "" );
 	const [ emailCheck, setEmailCheck ] = useState( false );
+	const [ emailCheckExec, setEmailCheckExec ] = useState( false );
 	const emailRef = useRef<HTMLInputElement>( null );
 	const getIsDupl = async () => {
+		setEmailCheckExec( true );
+
 		/** -- E mail 유효성 검사 */
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		if ( !email ) {
@@ -123,10 +126,18 @@ export default function Join() {
 								<input type="email" name="email" id="email" placeholder="이메일을 입력하세요." ref={emailRef} onChange={( e ) => setEmail( e.target.value )} value={email} autoComplete="off" />
 								<button type="button" className="cBtn cBtn2 mailCheck" onClick={getIsDupl}><span>중복확인</span></button>
 								{
-									emailCheck ? (
-										<span className="emailCheck">사용 가능한 이메일입니다.</span>
-									) : (
-										<span className="emailCheck">이메일을 입력하고 중복확인을 해주세요.</span>
+									emailCheckExec && (
+										emailCheck ? (
+											<p className="cInfo1 emailCheck pass">
+												<i className="ri-error-warning-line"></i>
+												<span>사용 가능한 이메일입니다.</span>
+											</p>
+										) : (
+											<p className="cInfo1 emailCheck alert">
+												<i className="ri-error-warning-line"></i>
+												<span>이메일을 입력하고 중복확인을 해주세요.</span>
+											</p>
+										)
 									)
 								}
 							</dd>
