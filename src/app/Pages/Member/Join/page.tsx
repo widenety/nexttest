@@ -1,5 +1,7 @@
 'use client';
 import React, { useState, useRef } from "react";
+import { getAuth, fetchSignInMethodsForEmail } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 /*
 import { useEffect } from "react";
 import { db } from "@/lib/firebase";
@@ -51,16 +53,10 @@ export default function Join() {
 	/* ==============================
 	* E-mail 유효성 검사 / 중복확인
 	================================= */
-	// const [ email, setEmail ] = useState<string>( "" );
-	/** -- Firebase에서 중복 검사 */
-	const getDuplStatus = async () => {
-
-	}
-
 	const [ emailStr, setEmailStr ] = useState<string>( "" );
 	const [ emailTypeChk, setEmailTypeChk ] = useState( false );
-	// const [ emailIsDupl, setEmailIsDupl ] = useState( false );
-	// const [ emailOk, setEmailOk ] = useState( false );
+	const [ emailIsDupl, setEmailIsDupl ] = useState( false );
+	const [ emailOk, setEmailOk ] = useState( false );
 	const emailRef = useRef<HTMLInputElement>( null );
 	const setMbMailChk = async ( e: React.ChangeEvent<HTMLInputElement> ) => {
 		const inputedEmail = e.target.value;
@@ -74,6 +70,29 @@ export default function Join() {
 		/** -- E mail 유효하면 Firemase 중복확인. */
 
 		/** -- 위 조건 전부 통과시 ok Flag state OK 설정. */
+	}
+
+	/** -- Firebase에서 중복 검사 */
+	const getDuplStatus = async () => {
+		if ( !emailStr || !emailTypeChk ) {
+			alert( "올바른 이메일 형식을 입력해주세요." );
+			return;
+		}
+		try {
+			const methods = await fetchSignInMethodsForEmail( auth, emailStr );
+			if ( methods.length > 0 ) {
+				alert( "이미 사용 중인 이메일입니다." );
+				setEmailIsDupl( false );
+				setEmailOk( false );
+			} else {
+				alert( "사용 가능한 이메일입니다." );
+				setEmailIsDupl( true );
+				setEmailOk( true );
+			}
+		} catch ( err ) {
+			console.error( "이메일 중복 확인 오류:", err );
+			alert( "이메일 중복 확인 중 오류가 발생했습니다." );
+		}
 	}
 
 	/* ==============================
@@ -109,7 +128,6 @@ export default function Join() {
 	* 회원가입
 	================================= */
 	const setJoin = async () => {
-
 	}
 
 	return (
@@ -155,13 +173,13 @@ export default function Join() {
 								<button type="button" className="cBtn cBtn2 mailCheck" onClick={getDuplStatus}><span>중복확인</span></button>
 								<ul className="cList1 hasIcon guideMsg">
 									<li className={emailTypeChk ? 'on' : ''}><i className={`ico ri-${ emailTypeChk ? 'check' : 'close' }-line`} /><p className="txt">이메일 형태로 입력해주세요.</p></li>
-									<li><i className="ico ri-close-line" /><p className="txt">중복확인을 실행해주세요.</p></li>
+									<li className={emailIsDupl ? 'on' : ''}><i className={`ico ri-${ emailIsDupl ? 'check' : 'close' }-line`} /><p className="txt">중복확인을 실행해주세요.</p></li>
 								</ul>
 								<div>
 									emailStr : {emailStr} <br />
 									emailTypeChk : {emailTypeChk ? 'true' : 'false'} <br />
-									{/* emailIsDupl : {emailIsDupl ? 'true' : 'false'} <br /> */}
-									{/* emailOk : <strong className="cred">{emailOk ? 'true' : 'false'}</strong><br /> */}
+									emailIsDupl : {emailIsDupl ? 'true' : 'false'} <br />
+									emailOk : <strong className="cred">{emailOk ? 'true' : 'false'}</strong><br />
 								</div>
 							</dd>
 						</dl>
@@ -179,6 +197,10 @@ export default function Join() {
 								</ul>
 								<div>
 									passStr: {passStr} <br />
+									hasLim : {hasLim ? 'true' : 'false'}<br />
+									hasSpecialChar : {hasSpecialChar ? 'true' : 'false'}<br />
+									hasLetter : {hasLetter ? 'true' : 'false'}<br />
+									hasNumber : {hasLetter ? 'true' : 'false'}<br />
 									passOk : <strong className="cred">{passOk ? 'true' : 'false'}</strong><br />
 								</div>
 							</dd>
