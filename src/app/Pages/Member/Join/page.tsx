@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useRef } from "react";
-import { getAuth, fetchSignInMethodsForEmail } from "firebase/auth";
+import { fetchSignInMethodsForEmail } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 /*
 import { useEffect } from "react";
