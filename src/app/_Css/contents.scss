@@ -13,16 +13,27 @@
 			button {height:40px;margin:0 0 0 10px;}
 		}
 		.hasPassword {}
-		.emailCheck {
+		.cInfo1 {
 			margin:5px 0 0;
 			&.pass {color:$passColor1;}
 			&.alert {color:$alertColor1;}
+			em {font-style:normal;text-decoration:underline;font-weight:700;}
 		}
 	}
 	.frmItemLv1 {
 		align-items:flex-start;align-content:flex-start;
 		dt {padding:10px 0 0;}
-		dd {}
+		dd {
+			.guideMsg {
+				width:100%;margin:10px 0 0;
+				> li {
+					font-size:14px;margin:0 0 5px;
+					.ico {margin:1px 2px 0 0;}
+					.txt {}
+					&.on {color:$blue1;}
+				}
+			}
+		}
 	}
 	.frmListLv2 {}
 	.joinBtn {width:100%;}
