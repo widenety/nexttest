@@ -13,7 +13,8 @@ export default function Join() {
 	/* ==============================
 	* .env.local 테스트
 	================================= */
-	// ** console.log( process.env.NEXT_PUBLIC_FIREBASE_API_KEY );
+	console.log( "@@@@@@@" );
+	console.log( process.env.NEXT_PUBLIC_FIREBASE_API_KEY );
 
 	/* ==============================
 	* Firebase 데이터 불러오기 테스트
@@ -138,7 +139,7 @@ export default function Join() {
 			<p>이름: {name ?? "불러오는 중..."}</p>
 			*/}
 
-			<h3 className="frmTitLv1 cTit1">회원가입폼</h3>
+			<h3 className="frmTitLv1 cTit1">회원가입폼 #2</h3>
 			<form>
 				<ul className="frmListLv1">
 					<li>
