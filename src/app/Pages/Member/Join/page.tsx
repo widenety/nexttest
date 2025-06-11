@@ -51,7 +51,7 @@ export default function Join() {
 	/* ==============================
 	* E-mail 유효성 검사 / 중복확인
 	================================= */
-	const [ email, setEmail ] = useState<string>( "" );
+	// const [ email, setEmail ] = useState<string>( "" );
 	/** -- Firebase에서 중복 검사 */
 	const getDuplStatus = async () => {
 
@@ -59,8 +59,8 @@ export default function Join() {
 
 	const [ emailStr, setEmailStr ] = useState<string>( "" );
 	const [ emailTypeChk, setEmailTypeChk ] = useState( false );
-	const [ emailIsDupl, setEmailIsDupl ] = useState( false );
-	const [ emailOk, setEmailOk ] = useState( false );
+	// const [ emailIsDupl, setEmailIsDupl ] = useState( false );
+	// const [ emailOk, setEmailOk ] = useState( false );
 	const emailRef = useRef<HTMLInputElement>( null );
 	const setMbMailChk = async ( e: React.ChangeEvent<HTMLInputElement> ) => {
 		const inputedEmail = e.target.value;
@@ -79,8 +79,8 @@ export default function Join() {
 	/* ==============================
 	* Paswword 유효성 검사
 	================================= */
+	const passLenLim = 5;
 	const [ passStr, setPassStr ] = useState<string>( "" );
-	const [ passLenLim, setPassLenLim ] = useState( 5 );
 	const [ passOk, setPassOk ] = useState( false );
 	const [ hasLim, setHasLim ] = useState( false );
 	const [ hasSpecialChar, setHasSpecialChar ] = useState( false );
@@ -160,8 +160,8 @@ export default function Join() {
 								<div>
 									emailStr : {emailStr} <br />
 									emailTypeChk : {emailTypeChk ? 'true' : 'false'} <br />
-									emailIsDupl : {emailIsDupl ? 'true' : 'false'} <br />
-									emailOk : <strong className="cred">{emailOk ? 'true' : 'false'}</strong><br />
+									{/* emailIsDupl : {emailIsDupl ? 'true' : 'false'} <br /> */}
+									{/* emailOk : <strong className="cred">{emailOk ? 'true' : 'false'}</strong><br /> */}
 								</div>
 							</dd>
 						</dl>
