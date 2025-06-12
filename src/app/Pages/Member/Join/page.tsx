@@ -77,6 +77,9 @@ export default function Join() {
 	const getDuplStatus = async () => {
 		if ( !emailStr || !emailTypeChk ) {
 			alert( "올바른 이메일 형식을 입력해주세요." );
+			setEmailTypeChk( false );
+			setEmailOk( false );
+			setEmailIsDupl( false );
 			return;
 		}
 		try {

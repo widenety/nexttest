@@ -4,6 +4,9 @@ import './_Css/layout/layout.scss';
 import './_Css/styleGuide.scss';
 import './_Css/contents.scss';
 import type { Metadata } from 'next';
+import '@fontsource/noto-sans-kr/400.css';
+import '@fontsource/noto-sans-kr/700.css';
+import "remixicon/fonts/remixicon.css";
 // import { Geist, Geist_Mono } from 'next/font/google';
 
 /*
@@ -49,9 +52,6 @@ export default function RootLayout( {
 				<meta httpEquiv="imagetoolbar" content="no" />
 				<meta httpEquiv="Pragma" content="no-cache" />
 				<meta httpEquiv="expries" content="0" />
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-				<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
 			</head>
 			{/* <body className={`${ geistSans.variable } ${ geistMono.variable } antialiased`}> */}
 			<body>

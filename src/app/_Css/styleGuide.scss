@@ -1,6 +1,6 @@
 @charset "utf-8";
-@import "variables";
-@import 'remixicon/fonts/remixicon.css';
+@use "./variables" as *;
+@import "remixicon/fonts/remixicon.css";
 
 /* ==============================
 * Button
