@@ -13,7 +13,6 @@ export default function Join() {
 	/* ==============================
 	* .env.local 테스트
 	================================= */
-	console.log( "@@@@@@@" );
 	console.log( process.env.NEXT_PUBLIC_FIREBASE_API_KEY );
 
 	/* ==============================
