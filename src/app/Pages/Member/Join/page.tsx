@@ -13,7 +13,7 @@ export default function Join() {
 	/* ==============================
 	* .env.local 테스트
 	================================= */
-	console.log( process.env.NEXT_PUBLIC_FIREBASE_API_KEY );
+	// console.log( process.env.NEXT_PUBLIC_FIREBASE_API_KEY );
 
 	/* ==============================
 	* Firebase 데이터 불러오기 테스트
