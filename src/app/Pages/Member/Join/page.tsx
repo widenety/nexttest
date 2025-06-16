@@ -59,6 +59,8 @@ export default function Join() {
 	const [ emailIsDupl, setEmailIsDupl ] = useState( false );
 	const [ emailOk, setEmailOk ] = useState( false );
 	const emailRef = useRef<HTMLInputElement>( null );
+
+	/** -- E-mail 형식 유효성 검사 */
 	const setMbMailChk = async ( e: React.ChangeEvent<HTMLInputElement> ) => {
 		const inputedEmail = e.target.value;
 		setEmailStr( inputedEmail );
@@ -67,10 +69,6 @@ export default function Join() {
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		const getEmailValid = emailRegex.test( inputedEmail );
 		setEmailTypeChk( getEmailValid );
-
-		/** -- E mail 유효하면 Firemase 중복확인. */
-
-		/** -- 위 조건 전부 통과시 ok Flag state OK 설정. */
 	}
 
 	/** -- Firebase에서 중복 검사 */
@@ -132,6 +130,28 @@ export default function Join() {
 	* 회원가입
 	================================= */
 	const setJoin = async () => {
+		console.log( "membTypeOk  : ", membTypeOk );
+		console.log( "emailOk  : ", refTypePersonal );
+		console.log( "passOk  : ", passOk );
+
+		if ( !membTypeOk ) {
+			alert( "회원유형을 선택해주세요." );
+			setMembTypeStr( "" );
+			refTypePersonal.current?.focus();
+			return;
+		}
+		if ( !emailOk ) {
+			alert( "이메일을 올바르게 입력하고 중복확인을 해주세요." );
+			emailRef.current?.focus();
+			return;
+		}
+		if ( !passOk ) {
+			alert( "비밀번호를 올바르게 입력해주세요." );
+			refPass.current?.focus();
+			return;
+		}
+
+		alert( "회원가입을 진행합니다." );
 	}
 
 	return (
