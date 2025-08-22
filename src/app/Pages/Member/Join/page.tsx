@@ -1,43 +1,15 @@
 'use client';
 import React, { useState, useRef } from "react";
-import { fetchSignInMethodsForEmail } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";	// ** fetchSignInMethodsForEmail, signOut
+import { auth, db } from "@/lib/firebase";
+import { doc, setDoc, serverTimestamp, collection, where, getDocs, query } from "firebase/firestore";
+import { useNotice } from "@/app/_Context/notice-context";  // 👈 import
 
-/*
-import { useEffect } from "react";
-import { db } from "@/lib/firebase";
-import { collection, addDoc } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
-// */
 export default function Join() {
 	/* ==============================
-	* .env.local 테스트
+	* alert 대신 사용
 	================================= */
-	// console.log( process.env.NEXT_PUBLIC_FIREBASE_API_KEY );
-
-	/* ==============================
-	* Firebase 데이터 불러오기 테스트
-	================================= */
-	/*
-	const [ name, setName ] = useState<string | null>( null );
-	const getMbMail = async () => {
-		try {
-			const docRef = doc( db, "tblMember", "JLjAD2mOaWjMtLNTCW4E" ); // 컬렉션 이름, 문서 ID
-			const docSnap = await getDoc( docRef );
-			if ( docSnap.exists() ) {
-				const data = docSnap.data();
-				setName( data.mbMail );
-			} else {
-				console.log( "문서를 찾을 수 없습니다." );
-			}
-		} catch ( err ) {
-			console.error( "데이터 불러오기 오류:", err );
-		}
-	};
-	useEffect( () => {
-		getMbMail();
-	}, [] );
-	// */
+	const notice = useNotice();		// ** console.log( "Notice 객체:", notice );
 
 	/* ==============================
 	* 회원타입 선택
@@ -65,6 +37,10 @@ export default function Join() {
 		const inputedEmail = e.target.value;
 		setEmailStr( inputedEmail );
 
+		/** -- 이메일을 다시 입력하면 이전 중복확인 결과는 무효 처리 */
+		setEmailIsDupl( false );
+		setEmailOk( false );
+
 		/** -- E mail 유효성 검사 먼저. */
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		const getEmailValid = emailRegex.test( inputedEmail );
@@ -75,14 +51,15 @@ export default function Join() {
 	const getDuplStatus = async () => {
 		if ( !emailStr || !emailTypeChk ) {
 			alert( "올바른 이메일 형식을 입력해주세요." );
-			setEmailTypeChk( false );
-			setEmailOk( false );
 			setEmailIsDupl( false );
+			setEmailOk( false );
 			return;
 		}
+
 		try {
-			const methods = await fetchSignInMethodsForEmail( auth, emailStr );
-			if ( methods.length > 0 ) {
+			const q = query( collection( db, "tblMember" ), where( "email", "==", emailStr.trim() ) );
+			const querySnapshot = await getDocs( q );
+			if ( !querySnapshot.empty ) {
 				alert( "이미 사용 중인 이메일입니다." );
 				setEmailIsDupl( false );
 				setEmailOk( false );
@@ -91,9 +68,12 @@ export default function Join() {
 				setEmailIsDupl( true );
 				setEmailOk( true );
 			}
-		} catch ( err ) {
-			console.error( "이메일 중복 확인 오류:", err );
-			alert( "이메일 중복 확인 중 오류가 발생했습니다." );
+		} catch ( error: unknown ) {
+			console.error( "Firestore 중복 확인 오류:", error );
+			//alert( "중복 확인 중 오류가 발생했습니다: " + error.message );
+			alert( "중복 확인 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요." );
+			setEmailIsDupl( false );
+			setEmailOk( false );
 		}
 	}
 
@@ -135,7 +115,9 @@ export default function Join() {
 		console.log( "passOk  : ", passOk );
 
 		if ( !membTypeOk ) {
-			alert( "회원유형을 선택해주세요." );
+			//alert( "회원유형을 선택해주세요." );
+			notice.failed( { header: "회원가입 실패", message: "회원유형을 선택해주세요." } );
+
 			setMembTypeStr( "" );
 			refTypePersonal.current?.focus();
 			return;
@@ -151,7 +133,24 @@ export default function Join() {
 			return;
 		}
 
-		alert( "회원가입을 진행합니다." );
+		try {
+			const userCredential = await createUserWithEmailAndPassword( auth, emailStr, passStr );
+			const user = userCredential.user;
+
+			/** -- Firestore에 회원 정보 저장 */
+			await setDoc( doc( db, "tblMember", user.uid ), {
+				uid: user.uid,
+				email: emailStr,
+				memberType: membTypeStr,
+				createdAt: serverTimestamp(),
+			} );
+
+			alert( "회원가입이 완료되었습니다!" );
+			/** -- 리디렉션 또는 로그인 상태 전환 등 */
+		} catch ( error ) {
+			console.error( "회원가입 오류:", error );
+			alert( "회원가입 중 문제가 발생했습니다." );
+		}
 	}
 
 	return (
