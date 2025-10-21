@@ -1,6 +1,5 @@
 "use client";
 import { useNotice } from "../_Context/notice-context";
-// test #1
 export default function Notice() {
 	const notice = useNotice();
 
