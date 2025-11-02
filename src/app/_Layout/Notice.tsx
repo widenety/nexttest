@@ -1,17 +1,27 @@
 "use client";
+import { useEffect, useRef } from "react";
 import { useNotice } from "../_Context/notice-context";
 export default function Notice() {
 	const notice = useNotice();
-
+	const noticeRef = useRef<HTMLDivElement>( null );
+	useEffect( () => {	// ** Notice가 나타날 때 포커스
+		if ( notice.show && noticeRef.current ) {
+			noticeRef.current.focus();
+		}
+	}, [ notice.show ] );
 	if ( !notice.show ) return null;
 
 	return (
-		<div
-			style={{ width: "100px", height: "100px", border: "3px solid #f00" }}
-			className={`fixed top-4 right-4 p-4 rounded-xl shadow-lg text-white z-50 transition ${ notice.isSuccessed ? "bg-green-600" : "bg-red-600" }`} >
-			<h4 className="font-bold">{notice.header}</h4>
-			<p>{notice.message}</p>
-			<button className="mt-2 underline text-sm" onClick={notice.close} > 닫기 </button>
+		<div className={`notiPkg ${ notice.isSuccessed ? "successed" : "failed" }`} >
+			<div className="box" ref={noticeRef} tabIndex={-1}>
+				<div className="header">
+					<h4 className="title">{notice.header}</h4>
+					<button type="button" className="actionBtn" onClick={notice.close}><span className="blind">닫기</span></button>
+				</div>
+				<div className="contents">
+					<p className="message">{notice.message}</p>
+				</div>
+			</div>
 		</div>
 	);
 }

@@ -50,7 +50,7 @@ export default function Join() {
 	/** -- Firebase에서 중복 검사 */
 	const getDuplStatus = async () => {
 		if ( !emailStr || !emailTypeChk ) {
-			alert( "올바른 이메일 형식을 입력해주세요." );
+			notice.failed( { header: "회원가입 실패", message: "올바른 이메일 형식을 입력해주세요." } );
 			setEmailIsDupl( false );
 			setEmailOk( false );
 			return;
@@ -60,18 +60,18 @@ export default function Join() {
 			const q = query( collection( db, "tblMember" ), where( "email", "==", emailStr.trim() ) );
 			const querySnapshot = await getDocs( q );
 			if ( !querySnapshot.empty ) {
-				alert( "이미 사용 중인 이메일입니다." );
+				notice.failed( { header: "이메일 사용불가", message: "이미 사용 중인 이메일입니다." } );
 				setEmailIsDupl( false );
 				setEmailOk( false );
 			} else {
-				alert( "사용 가능한 이메일입니다." );
+				notice.successed( { header: "이메일 사용가능", message: "사용 가능한 이메일입니다." } );
 				setEmailIsDupl( true );
 				setEmailOk( true );
 			}
 		} catch ( error: unknown ) {
 			console.error( "Firestore 중복 확인 오류:", error );
 			//alert( "중복 확인 중 오류가 발생했습니다: " + error.message );
-			alert( "중복 확인 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요." );
+			notice.failed( { header: "이메일 검증불가", message: "중복 확인 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요." } );
 			setEmailIsDupl( false );
 			setEmailOk( false );
 		}
@@ -115,20 +115,19 @@ export default function Join() {
 		console.log( "passOk  : ", passOk );
 
 		if ( !membTypeOk ) {
-			//alert( "회원유형을 선택해주세요." );
-			notice.failed( { header: "회원가입 실패", message: "회원유형을 선택해주세요." } );
+			notice.failed( { header: "회원가입 실패", message: "회원유형(기업회원, 개인회원 중)을 선택해주세요. \n선택하지 않으시면 회원가입하실수 없습니다." } );
 
 			setMembTypeStr( "" );
 			refTypePersonal.current?.focus();
 			return;
 		}
 		if ( !emailOk ) {
-			alert( "이메일을 올바르게 입력하고 중복확인을 해주세요." );
+			notice.failed( { header: "회원가입 실패", message: "이메일을 올바르게 입력하고 중복확인을 해주세요." } );
 			emailRef.current?.focus();
 			return;
 		}
 		if ( !passOk ) {
-			alert( "비밀번호를 올바르게 입력해주세요." );
+			notice.failed( { header: "회원가입 실패", message: "비밀번호를 올바르게 입력해주세요." } );
 			refPass.current?.focus();
 			return;
 		}
@@ -145,11 +144,11 @@ export default function Join() {
 				createdAt: serverTimestamp(),
 			} );
 
-			alert( "회원가입이 완료되었습니다!" );
+			notice.successed( { header: "회원가입 성공", message: "회원가입이 완료되었습니다!" } );
 			/** -- 리디렉션 또는 로그인 상태 전환 등 */
 		} catch ( error ) {
 			console.error( "회원가입 오류:", error );
-			alert( "회원가입 중 문제가 발생했습니다." );
+			notice.failed( { header: "회원가입 실패", message: "회원가입 중 문제가 발생했습니다." } );
 		}
 	}
 
@@ -181,10 +180,10 @@ export default function Join() {
 										</div>
 									</li>
 								</ul>
-								<div>
+								{/* <div>
 									membTypeStr : {membTypeStr} <br />
 									membTypeOk : <strong className="cred">{membTypeOk ? 'true' : 'false'}</strong><br />
-								</div>
+								</div> */}
 							</dd>
 						</dl>
 					</li>
@@ -198,12 +197,12 @@ export default function Join() {
 									<li className={emailTypeChk ? 'on' : ''}><i className={`ico ri-${ emailTypeChk ? 'check' : 'close' }-line`} /><p className="txt">이메일 형태로 입력해주세요.</p></li>
 									<li className={emailIsDupl ? 'on' : ''}><i className={`ico ri-${ emailIsDupl ? 'check' : 'close' }-line`} /><p className="txt">중복확인을 실행해주세요.</p></li>
 								</ul>
-								<div>
+								{/* <div>
 									emailStr : {emailStr} <br />
 									emailTypeChk : {emailTypeChk ? 'true' : 'false'} <br />
 									emailIsDupl : {emailIsDupl ? 'true' : 'false'} <br />
 									emailOk : <strong className="cred">{emailOk ? 'true' : 'false'}</strong><br />
-								</div>
+								</div> */}
 							</dd>
 						</dl>
 					</li>
@@ -218,14 +217,14 @@ export default function Join() {
 									<li className={hasLetter ? 'on' : ''}><i className={`ico ri-${ hasLetter ? 'check' : 'close' }-line`} /><p className="txt">영문자를 포함해 주세요.</p></li>
 									<li className={hasNumber ? 'on' : ''}><i className={`ico ri-${ hasNumber ? 'check' : 'close' }-line`} /><p className="txt">숫자를 포함해 주세요.</p></li>
 								</ul>
-								<div>
+								{/* <div>
 									passStr: {passStr} <br />
 									hasLim : {hasLim ? 'true' : 'false'}<br />
 									hasSpecialChar : {hasSpecialChar ? 'true' : 'false'}<br />
 									hasLetter : {hasLetter ? 'true' : 'false'}<br />
 									hasNumber : {hasLetter ? 'true' : 'false'}<br />
 									passOk : <strong className="cred">{passOk ? 'true' : 'false'}</strong><br />
-								</div>
+								</div> */}
 							</dd>
 						</dl>
 					</li>
