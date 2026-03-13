@@ -1,5 +1,6 @@
 @charset "utf-8";
-@use "./variables" as *;
+/* @use "./variables" as *; */
+@use "variables";
 @import "remixicon/fonts/remixicon.css";
 
 /* ==============================
@@ -8,16 +9,16 @@
 .cBtn {
 	display:flex;flex-flow:row;flex-wrap:wrap;align-items:center;align-content:center;justify-content:center;border:0;border-radius:5px;height:50px;padding:0 20px;box-sizing:border-box;font-size:17px;line-height:1.2;color:#fff;text-decoration:none;cursor:pointer;min-width:100px;transition:all .3s ease;
 	&.cBtn1 {
-		background:$blue1;
+		background:variables.$blue1;
 		> span {color:#fff;line-height:1;}
 		&:hover,
-		&:focus {background:$blue2;}
+		&:focus {background:variables.$blue2;}
 	}
 	&.cBtn2 {
-		background:$dark1;
+		background:variables.$dark1;
 		> span {color:#fff;line-height:1;}
 		&:hover,
-		&:focus {background:$dark2;}
+		&:focus {background:variables.$dark2;}
 	}
 }
 
@@ -114,10 +115,10 @@ textarea {height:100px;resize:none;}
 .rdos input[type="radio"] + label:before {left:0;top:5px;margin:0;width:21px;height:21px;background:#fff;border:1px solid #ccc}
 .rdos input[type="radio"] + label:after {width:9px;height:9px;left:6px;top:11px;background:#fff;border-radius:50%;opacity:0}
 .rdos input[type="radio"] + label:focus,
-.rdos input[type="radio"] + label:hover {color:$blue1;}
+.rdos input[type="radio"] + label:hover {color:variables.$blue1;}
 .rdos input[type="radio"] + label:focus:before,
-.rdos input[type="radio"] + label:hover:before {border-color:$blue1;}
-.rdos input[type="radio"]:checked + label:before {border-color:$blue2;background:$blue2;}
+.rdos input[type="radio"] + label:hover:before {border-color:variables.$blue1;}
+.rdos input[type="radio"]:checked + label:before {border-color:variables.$blue2;background:variables.$blue2;}
 .rdos input[type="radio"]:checked + label:after {opacity:1}
 .rdos input[type="radio"]:focus + label {outline:3px solid rgba(59, 153, 252, .5);}
 .chks {position:relative;line-height:1}
