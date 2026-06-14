@@ -67,6 +67,7 @@ export default function RootLayout( {
 							</h1>
 							<nav className="navi">
 								<ul>
+									<li><Link href="/Pages/OpenApi/Facilities">OpenApi</Link></li>
 									<li><Link href="/Pages/Member/Login">Login</Link></li>
 									<li><Link href="/Pages/Member/Join">Join</Link></li>
 								</ul>
