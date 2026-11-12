@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useRef } from "react";
+import Link from 'next/link';
 import { createUserWithEmailAndPassword } from "firebase/auth";	// ** fetchSignInMethodsForEmail, signOut
 import { auth, db } from "@/lib/firebase";
 import { doc, setDoc, serverTimestamp, collection, where, getDocs, query } from "firebase/firestore";
@@ -10,6 +11,13 @@ export default function Join() {
 	* alert 대신 사용
 	================================= */
 	const notice = useNotice();		// ** console.log( "Notice 객체:", notice );
+
+	/* ==============================
+	* 아이디 찾기
+	================================= */
+	const getFindId = async () => {
+		notice.failed( { header: "준비중입니다.", message: "곧 서비스 하도록 하겠습니다." } );
+	}
 
 	/* ==============================
 	* 회원타입 선택
@@ -230,6 +238,14 @@ export default function Join() {
 					</li>
 				</ul>
 			</form>
+			<ul className="cList2">
+				<li>
+					<Link href="/Pages/Member/Login" className="cLink cBtn1"><span>로그인</span></Link>
+				</li>
+				<li>
+					<button type="button" className="cLink cBtn1" onClick={getFindId}><span>아이디 찾기</span></button>
+				</li>
+			</ul>
 			<button type="button" className="cBtn cBtn1 joinBtn" onClick={setJoin}><span>회원가입</span></button>
 		</div>
 	);

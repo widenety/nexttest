@@ -21,6 +21,15 @@
 		&:focus {background:variables.$dark2;}
 	}
 }
+.cLink {
+	display:flex;flex-flow:row;flex-wrap:wrap;border:0;background:transparent;padding:0;line-height:1;transition:all .3s ease;
+	> span {line-height:1;text-decoration:underline;font-size:15px;letter-spacing:-.05em;}
+	&.cBtn1 {
+		font-weight:400;color:#333;
+		&:hover,
+		&:focus {color:variables.$blue1;}
+	}
+}
 
 /* ==============================
 * Title
@@ -54,6 +63,10 @@
 			.txt {flex:1;}
 		}
 	}
+}
+.cList2 {
+	display:flex;flex-flow:row;flex-wrap:wrap;justify-content:space-between;margin:10px 0 20px;box-sizing:border-box;border-top:1px solid #ddd;padding:10px 0 0;
+	> li {}
 }
 
 /* ==============================
@@ -103,6 +116,7 @@ input[type="tel"] {height:40px;line-height:1;}
 input[type="password"] {font-family:monospace;}
 input[type="password"]::placeholder {font-family:"Noto Sans KR", sans-serif;}
 textarea {height:100px;resize:none;}
+button {font-family:"Noto Sans KR", sans-serif;}
 
 /* ==============================
 * Radio & Checkbox
