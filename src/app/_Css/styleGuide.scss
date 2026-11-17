@@ -92,7 +92,7 @@
 	.frmItemLv1 {
 		display:flex;flex-flow:row;flex-wrap:wrap;align-items:center;align-content:center;
 		dt,
-		dd {line-height:1;align-items:center;align-content:center;}
+		dd {line-height:1;align-items:center;align-content:center;box-sizing:border-box;position:relative;}
 		dt {
 			width:100px;
 			> * {line-height:1;}

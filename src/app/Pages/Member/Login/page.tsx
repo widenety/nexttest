@@ -35,9 +35,7 @@ export default function Login() {
 	* 로그인 하기.
 	================================= */
 	const runLogin = async () => {
-		console.log( "@@@@" );
-
-		// 입력값 확인
+		/** -- 이메일, 비밀번호 입력값 확인 */
 		if ( !idStr.trim() ) {
 			notice.failed( { header: "아이디를 입력하세요.", message: "이메일을 입력해 주세요." } );
 			return;
@@ -48,30 +46,23 @@ export default function Login() {
 		}
 
 		try {
-			// Firebase 로그인
-			const userCredential = await signInWithEmailAndPassword(
-				auth,
-				idStr.trim(),
-				passwordStr
-			);
+			/** ---- Firebase 로그인 */
+			const userCredential = await signInWithEmailAndPassword( auth, idStr.trim(), passwordStr );
 			const user = userCredential.user;
 
-			// Firestore 회원 정보 조회
+			/** ---- Firestore 회원 정보 조회 */
 			const memberRef = doc( db, 'tblMember', user.uid );
 			const memberSnap = await getDoc( memberRef );
 
 			if ( !memberSnap.exists() ) {
-				notice.failed( {
-					header: "회원 정보 오류",
-					message: "회원 정보를 찾을 수 없습니다."
-				} );
+				notice.failed( { header: "회원 정보 오류", message: "회원 정보를 찾을 수 없습니다." } );
 				return;
 			}
 			const memberData = memberSnap.data();
 			console.log( "로그인 성공:", user.uid );
 			console.log( "회원 정보:", memberData );
 
-			// 로그인 성공 후 이동
+			/** ---- 로그인 성공 후 이동 */
 			router.push( '/' );
 
 		} catch ( error ) {
@@ -86,15 +77,21 @@ export default function Login() {
 			} else {
 				notice.failed( { header: "오류 발생", message: "잠시 후 다시 시도해 주세요." } );
 			}
-
 			console.error( "로그인 오류:", error );
-
 		}
+	}
+
+	/* ==============================
+	* 비밀번호 미리보기
+	================================= */
+	const [ showPassword, setShowPassword ] = useState( false );
+	const runTogglePasswordVisibility = () => {
+		setShowPassword( prev => !prev );
 	}
 
 	return (
 		<div className="frm login">
-			<h3 className="frmTitLv1 cTit1">로그인 #3</h3>
+			<h3 className="frmTitLv1 cTit1">로그인 #4</h3>
 			<form onSubmit={( e ) => { e.preventDefault(); runLogin(); }}>
 				<ul className="frmListLv1">
 					<li>
@@ -108,8 +105,17 @@ export default function Login() {
 					<li>
 						<dl className="frmItemLv1">
 							<dt><label htmlFor="passwordField">비밀번호</label></dt>
-							<dd>
-								<input type="password" name="passwordField" id="passwordField" placeholder="비밀번호를 입력하세요." autoComplete="off" value={passwordStr} onChange={( e ) => setPasswordStr( e.target.value )} />
+							<dd className="hasBtn">
+								<input type={showPassword ? "text" : "password"} name="passwordField" id="passwordField" placeholder="비밀번호를 입력하세요." autoComplete="off" value={passwordStr} onChange={( e ) => setPasswordStr( e.target.value )} />
+								<button type="button" onClick={runTogglePasswordVisibility}>
+									{
+										!showPassword ? (
+											<i className="ri-eye-close-line"></i>
+										) : (
+											<i className="ri-eye-line"></i>
+										)
+									}
+								</button>
 							</dd>
 						</dl>
 					</li>

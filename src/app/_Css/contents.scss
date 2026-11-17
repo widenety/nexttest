@@ -3,7 +3,7 @@
 @use "variables";
 
 /* ==============================
-* 회원가입 폼
+* 회원가입, 로그인 폼
 ================================= */
 .join, .login {
 	margin:50px auto;max-width:500px;width:100%;
@@ -36,6 +36,14 @@
 					.txt {}
 					&.on {color:variables.$blue1;}
 				}
+			}
+			&.hasBtn {
+				button {
+					display:flex;flex-flow:row;flex-wrap:wrap;justify-content:center;align-items:center;align-content:center;width:30px;height:30px;position:absolute;z-index:2;right:5px;top:50%;transform:translateY(-50%);line-height:1;border:1px solid #aaa;background:#fff;color:#888;border-radius:3px;transition:all .3s ease;
+					i {font-size:20px;}
+					&:hover {color:variables.$passColor1;border-color:variables.$passColor1;;}
+				}
+				input {position:static;z-index:1;}
 			}
 		}
 	}
