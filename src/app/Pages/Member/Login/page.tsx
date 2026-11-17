@@ -100,7 +100,7 @@ export default function Login() {
 		console.group( "로그인 정보" );
 		console.log( 'UID:', user.uid );
 		console.log( '이메일:', user.email );
-		console.log( 'Live:', user.live );
+		//console.log( 'Live:', user.live );
 		console.groupEnd();
 	}
 
