@@ -9,6 +9,8 @@ import '@fontsource/noto-sans-kr/700.css';
 import "remixicon/fonts/remixicon.css";
 import NoticeProvider from "./_Context/notice-context"; // 👈 Context import
 import Notice from "./_Layout/Notice"; // 👈 알림창 UI 컴포넌트(직접 생성 예정)
+import { AuthProvider } from '@/app/_Context/auth-context';
+import Header from './header';
 
 // import { Geist, Geist_Mono } from 'next/font/google';
 
@@ -58,30 +60,33 @@ export default function RootLayout( {
 			</head>
 			{/* <body className={`${ geistSans.variable } ${ geistMono.variable } antialiased`}> */}
 			<body>
-				<NoticeProvider>
-					<Notice /> {/* 전역 알림창 */}
-					<div id="wrap">
-						<div id="Header">
-							<h1 className="logo">
-								<Link href="/">로고</Link>
-							</h1>
-							<nav className="navi">
-								<ul>
-									<li><Link href="/Pages/OpenApi/Facilities">OpenApi</Link></li>
-									<li><Link href="/Pages/Member/Login">Login</Link></li>
-									<li><Link href="/Pages/Member/Join">Join</Link></li>
-								</ul>
-							</nav>
+				<AuthProvider>
+					<NoticeProvider>
+						<Notice /> {/* 전역 알림창 */}
+						<div id="wrap">
+							<div id="Header">
+								<h1 className="logo">
+									<Link href="/">로고</Link>
+								</h1>
+								<nav className="navi">
+									<Header />
+									<ul>
+										<li><Link href="/Pages/OpenApi/Facilities">OpenApi</Link></li>
+										<li><Link href="/Pages/Member/Login">Login</Link></li>
+										<li><Link href="/Pages/Member/Join">Join</Link></li>
+									</ul>
+								</nav>
+							</div>
+							<div id="Contents">
+								{children}
+							</div>
+							<div id="Footer">
+								<div className="logo">로고</div>
+								<div className="copy">Copyright widenety</div>
+							</div>
 						</div>
-						<div id="Contents">
-							{children}
-						</div>
-						<div id="Footer">
-							<div className="logo">로고</div>
-							<div className="copy">Copyright widenety</div>
-						</div>
-					</div>
-				</NoticeProvider>
+					</NoticeProvider>
+				</AuthProvider>
 			</body>
 		</html>
 	);

@@ -7,6 +7,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { FirebaseError } from 'firebase/app';
 import { auth, db } from "@/lib/firebase";
+import { useAuth } from '@/app/_Context/auth-context';
+import { cp } from 'fs';
 export default function Login() {
 	/* ==============================
 	* alert 대신 사용.
@@ -87,6 +89,19 @@ export default function Login() {
 	const [ showPassword, setShowPassword ] = useState( false );
 	const runTogglePasswordVisibility = () => {
 		setShowPassword( prev => !prev );
+	}
+
+	/* ==============================
+	* 로그인 상태보기
+	================================= */
+	const { user, loading } = useAuth();
+	if ( loading ) return <p>로그인 확인 중...</p>;
+	if ( user ) {
+		console.group( "로그인 정보" );
+		console.log( 'UID:', user.uid );
+		console.log( '이메일:', user.email );
+		console.log( 'Live:', user.live );
+		console.groupEnd();
 	}
 
 	return (
