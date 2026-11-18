@@ -1,4 +1,4 @@
-import Link from 'next/link';
+
 import './_Css/common.scss';
 import './_Css/layout/layout.scss';
 import './_Css/styleGuide.scss';
@@ -64,19 +64,7 @@ export default function RootLayout( {
 					<NoticeProvider>
 						<Notice /> {/* 전역 알림창 */}
 						<div id="wrap">
-							<div id="Header">
-								<h1 className="logo">
-									<Link href="/">로고</Link>
-								</h1>
-								<nav className="navi">
-									<Header />
-									<ul>
-										<li><Link href="/Pages/OpenApi/Facilities">OpenApi</Link></li>
-										<li><Link href="/Pages/Member/Login">Login</Link></li>
-										<li><Link href="/Pages/Member/Join">Join</Link></li>
-									</ul>
-								</nav>
-							</div>
+							<Header />
 							<div id="Contents">
 								{children}
 							</div>

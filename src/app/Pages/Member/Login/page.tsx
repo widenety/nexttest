@@ -7,8 +7,8 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { FirebaseError } from 'firebase/app';
 import { auth, db } from "@/lib/firebase";
-import { useAuth } from '@/app/_Context/auth-context';
-import { cp } from 'fs';
+
+// ** import { cp } from 'fs'; 이게 머지?
 export default function Login() {
 	/* ==============================
 	* alert 대신 사용.
@@ -61,8 +61,10 @@ export default function Login() {
 				return;
 			}
 			const memberData = memberSnap.data();
+			console.group( "로그인 회원" );
 			console.log( "로그인 성공:", user.uid );
 			console.log( "회원 정보:", memberData );
+			console.groupEnd();
 
 			/** ---- 로그인 성공 후 이동 */
 			router.push( '/' );
@@ -91,22 +93,9 @@ export default function Login() {
 		setShowPassword( prev => !prev );
 	}
 
-	/* ==============================
-	* 로그인 상태보기
-	================================= */
-	const { user, loading } = useAuth();
-	if ( loading ) return <p>로그인 확인 중...</p>;
-	if ( user ) {
-		console.group( "로그인 정보" );
-		console.log( 'UID:', user.uid );
-		console.log( '이메일:', user.email );
-		//console.log( 'Live:', user.live );
-		console.groupEnd();
-	}
-
 	return (
 		<div className="frm login">
-			<h3 className="frmTitLv1 cTit1">로그인 #4</h3>
+			<h3 className="frmTitLv1 cTit1">로그인 #5</h3>
 			<form onSubmit={( e ) => { e.preventDefault(); runLogin(); }}>
 				<ul className="frmListLv1">
 					<li>
